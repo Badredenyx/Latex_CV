@@ -1,12 +1,19 @@
-%-------------------------
+% resume.tex
 % Resume in Latex
-% Author : Audric Serador
-% Inspired by: https://github.com/sb2nov/resume
-% License : MIT
-%------------------------
+\documentclass[a4paper,11pt]{article} % Changed to A4 for European standards
 
-\documentclass[letterpaper,11pt]{article}
+% 1) Make sure .tex is read as UTF-8:
+\usepackage[utf8]{inputenc}
 
+% 2) Use T1 font encoding so accents map correctly into the PDF’s text layer:
+\usepackage[T1]{fontenc}
+
+% 3) (Optional) Your babel language—if you write mostly English, keep [english];
+%    if you’ll have French hyphenation, you can add `french` as well:
+\usepackage[french, english]{babel}
+
+
+\usepackage{graphicx}
 \usepackage{fontawesome5}
 \usepackage{latexsym}
 \usepackage[empty]{fullpage}
@@ -17,27 +24,22 @@
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
 \usepackage{fancyhdr}
-\usepackage[english]{babel}
 \usepackage{tabularx}
 \input{glyphtounicode}
 
-
-
-% Custom font
 \usepackage[default]{lato}
 
 \pagestyle{fancy}
-\fancyhf{} % clear all header and footer fields
+\fancyhf{}
 \fancyfoot{}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
-% Adjust margins
-\addtolength{\oddsidemargin}{-0.5in}
-\addtolength{\evensidemargin}{-0.5in}
-\addtolength{\textwidth}{1in}
-\addtolength{\topmargin}{-.5in}
-\addtolength{\textheight}{1.0in}
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.6in}
+\addtolength{\textwidth}{1.2in}
+\addtolength{\topmargin}{-0.7in}
+\addtolength{\textheight}{1.2in}
 
 \urlstyle{same}
 
@@ -45,36 +47,48 @@
 \raggedright
 \setlength{\tabcolsep}{0in}
 
-% Sections formatting
 \titleformat{\section}{
   \vspace{-4pt}\scshape\raggedright\large
 }{}{0em}{}[\color{black}\titlerule\vspace{-5pt}]
 
-% Ensure that generate pdf is machine readable/ATS parsable
 \pdfgentounicode=1
 
-%-------------------------%
-% Custom commands
 \begin{document}
 \include{custom-commands}
 
-%-------------------------------------------%
-%%%%%%  RESUME STARTS HERE  %%%%%
-
 %----------HEADING----------%
-\input{src/heading}
 
-%-----------EDUCATION-----------%
-\input{src/education.tex}
+%----IMAGE----%
 
-%-----------EXPERIENCE-----------%
+\begin{minipage}[c]{0.15\textwidth} % Image section
+    \includegraphics[width=3cm,height=4cm]{photo/photo.jpg} % Standard European size for CV photos
+\end{minipage}%
+\hfill
+\begin{minipage}[c]{0.82\textwidth} % Heading section
+    \input{src/heading}
+\end{minipage}
+
+\vspace{0.5cm}
+%----------EDUCATION----------%
+
+\input{src/education}
+
+%----------EXPERIENCE----------%
+
 \input{src/experience}
 
-%-----------PROJECTS-----------%
+%----------PROJECTS----------%
+
 \input{src/projects}
 
-%-----------SKILLS-----------%
-\input{src/skills.tex}
+%----------SKILLS----------%
 
-%-------------------------------------------%
+\input{src/skills}
+
+% Hidden text for ATS scanning (not visible in final PDF)
+{\color{white}
+\fontsize{1pt}{1pt}\selectfont
+ADD THE JOB DESCRIPTION HERE ...
+}
+
 \end{document}
